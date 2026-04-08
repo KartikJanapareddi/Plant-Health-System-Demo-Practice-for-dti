@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Sensor Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_dash.css">
+</head>
+<body>
+    
+    <div class="top-bar">
+        <a href="index.html" class="back-btn glass">← Back to Environment</a>
+        <div class="connection-status">
+            <span class="pulse-dot"></span> NodeMCU Connected via <span id="ipDisplay">192.168.1.xxx</span>
+        </div>
+    </div>
+
+    <header class="dash-header">
+        <h1>Health Overview: <span id="displayPlantName" class="highlight">Your Plant</span></h1>
+        <p>Live metrics streaming from local hardware</p>
+    </header>
+
+    <main class="bento-grid">
+        <!-- Main Environmental Factors -->
+        <div class="bento-card glass temp-card">
+            <div class="card-icon">🌡️</div>
+            <h3>Ambient Temp</h3>
+            <div class="metric"><span id="valTemp">--</span> <span class="unit">°C</span></div>
+            <div class="status-bar"><div class="fill" style="width: 60%; background: #fbbf24;"></div></div>
+        </div>
+
+        <div class="bento-card glass hum-card">
+            <div class="card-icon">☁️</div>
+            <h3>Air Humidity</h3>
+            <div class="metric"><span id="valHum">--</span> <span class="unit">%</span></div>
+            <div class="status-bar"><div class="fill" style="width: 45%; background: #60a5fa;"></div></div>
+        </div>
+
+        <div class="bento-card glass moist-card main-moist">
+            <div class="card-icon">💧</div>
+            <h3>Soil Moisture</h3>
+            <div class="metric large"><span id="valMoist">--</span> <span class="unit">%</span></div>
+            <p class="insight" id="moistInsight">Optimal</p>
+            <svg class="wave-bg" viewBox="0 0 100 50" preserveAspectRatio="none">
+                <path d="M0,50 L0,20 Q25,30 50,20 T100,20 L100,50 Z" fill="rgba(96, 165, 250, 0.2)"/>
+            </svg>
+        </div>
+
+        <!-- Advanced Sensors -->
+        <div class="bento-card glass light-card">
+            <div class="card-icon">☀️</div>
+            <h3>Light Exposure</h3>
+            <div class="metric"><span id="valLux">--</span> <span class="unit">Lux</span></div>
+        </div>
+
+        <div class="bento-card glass ph-card">
+            <div class="card-icon">🧪</div>
+            <h3>Soil pH Level</h3>
+            <div class="metric"><span id="valPh">--</span></div>
+            <div class="ph-scale">
+                <div class="marker" id="phMarker" style="left: 65%;"></div>
+            </div>
+            <div class="ph-labels"><span>Acidic</span><span>Neutral</span><span>Alkaline</span></div>
+        </div>
+
+        <div class="bento-card glass co2-card">
+            <div class="card-icon">💨</div>
+            <h3>Ambient CO2</h3>
+            <div class="metric"><span id="valCo2">--</span> <span class="unit">ppm</span></div>
+        </div>
+
+        <!-- NPK Levels -->
+        <div class="bento-card glass npk-card">
+            <div class="card-header">
+                <div class="card-icon">🧬</div>
+                <h3>Macronutrients (NPK)</h3>
+            </div>
+            <div class="npk-bars">
+                <div class="npk-item">
+                    <span class="label">N (Nitrogen)</span>
+                    <div class="bar-bg"><div class="bar-fill n-fill" id="valN" style="width: 0%;"></div></div>
+                </div>
+                <div class="npk-item">
+                    <span class="label">P (Phosphorus)</span>
+                    <div class="bar-bg"><div class="bar-fill p-fill" id="valP" style="width: 0%;"></div></div>
+                </div>
+                <div class="npk-item">
+                    <span class="label">K (Potassium)</span>
+                    <div class="bar-bg"><div class="bar-fill k-fill" id="valK" style="width: 0%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | PlantHealth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep-navy: #0a0f1e;
+            --electric-blue: #3b82f6;
+            --primary-blue: #2563eb;
+            --text-pure-white: #ffffff;
+            --text-dim: #94a3b8;
+            --glass-white: rgba(255, 255, 255, 0.05);
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-deep-navy);
+            color: var(--text-pure-white);
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .split-screen {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- Left Side: Video Panel --- */
+        .left-panel {
+            position: relative;
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3rem;
+            overflow: hidden;
+        }
+
+        .left-panel video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 15, 30, 0.9) 0%, rgba(10, 15, 30, 0.4) 100%);
+            z-index: -1;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--electric-blue);
+            z-index: 10;
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 500px;
+        }
+
+        .play-btn-decorative {
+            width: 70px;
+            height: 70px;
+            background: rgba(59, 130, 246, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn-decorative::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 15px solid white;
+            margin-left: 5px;
+        }
+
+        .play-btn-decorative:hover {
+            transform: scale(1.1);
+            background: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        .testimonial {
+            z-index: 10;
+            background: var(--glass-white);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            max-width: 450px;
+        }
+
+        .testimonial p {
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial .author {
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--electric-blue);
+        }
+
+        /* --- Right Side: Login Panel --- */
+        .right-panel {
+            flex: 1;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            color: #1e293b;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-box h2 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-box .subtitle {
+            color: #64748b;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #475569;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-input:focus {
+            border-color: var(--electric-blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+
+        .forgot-link {
+            display: block;
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--primary-blue);
+            text-decoration: none;
+            margin-top: -0.5rem;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .signin-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #0f172a;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+
+        .signin-btn:hover {
+            background: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .divider:not(:empty)::before {
+            margin-right: .75rem;
+        }
+
+        .divider:not(:empty)::after {
+            margin-left: .75rem;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 0.85rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #1e293b;
+        }
+
+        .google-btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        .google-btn img {
+            width: 20px;
+        }
+
+        .signup-promo {
+            margin-top: 2.5rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #64748b;
+        }
+
+        .signup-promo a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 1024px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .split-screen {
+                flex-direction: column;
+                overflow-y: auto;
+                height: auto;
+            }
+
+            .left-panel {
+                min-height: 400px;
+                flex: none;
+                padding: 2rem;
+            }
+
+            .right-panel {
+                padding: 3rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="split-screen">
+        <!-- Left Section -->
+        <div class="left-panel">
+            <video autoplay muted loop playsinline id="bgVideo">
+                <source src="invideo-ai-1080 This Plant Grows Like a Machine 2026-04-08 (online-video-cutter.com).mp4"
+                    type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+
+            <div class="logo">
+                <span style="font-size: 1.8rem;">🌿</span> PlantHealth
+            </div>
+
+            <div class="hero-content">
+                <div class="play-btn-decorative"></div>
+                <h1>Nurturing Your Digital Garden</h1>
+                <p>Monitor, manage, and master your plant collection with AI-driven insights and real-time environment
+                    analytics.</p>
+            </div>
+
+            <div class="testimonial">
+                <p>"PlantHealth transformed my indoor jungle into a thriving ecosystem. The automation is incredible."
+                </p>
+                <div class="author">– Sarah K, Master Gardener</div>
+            </div>
+        </div>
+
+        <!-- Right Section -->
+        <div class="right-panel">
+            <div class="login-box">
+                <h2>Welcome Back</h2>
+                <p class="subtitle">Enter your credentials to access your garden.</p>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-input" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                    </div>
+
+                    <a href="#" class="forgot-link">Forgot password?</a>
+
+                    <button type="submit" class="signin-btn">Sign In</button>
+
+                    <div class="divider">or</div>
+
+                    <button type="button" class="google-btn">
+                        <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google">
+                        Sign in with Google
+                    </button>
+                </form>
+
+                <div class="signup-promo">
+                    Don't have an account? <a href="#">Create a garden</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const googleBtn = document.querySelector('.google-btn');
+
+        function handleSuccessfulLogin(email) {
+            // Extract a display name from email (e.g., "alex" from "alex@example.com")
+            const displayName = email.split('@')[0];
+            const capitalizedName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
+
+            localStorage.setItem('isAuthenticated', 'true');
+            localStorage.setItem('authName', capitalizedName);
+            localStorage.setItem('authEmail', email);
+
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1200);
+        }
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const btn = e.target.querySelector('.signin-btn');
+            
+            btn.innerHTML = 'Signing in...';
+            btn.style.opacity = '0.7';
+            
+            handleSuccessfulLogin(email);
+        });
+
+        googleBtn.addEventListener('click', () => {
+            googleBtn.innerHTML = 'Connecting to Google...';
+            googleBtn.style.opacity = '0.7';
+            
+            // Mock Google Login result
+            setTimeout(() => {
+                handleSuccessfulLogin('botanist@google.com');
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Friendly Plant Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Elements -->
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="invideo-ai-1080 This Plant Grows Like a Machine 2026-04-08 (online-video-cutter.com).mp4" type="video/mp4">
+    </video>
+    <div class="video-overlay"></div>
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div id="leaf-container"></div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="side-logo">🌿</div>
+        <div class="nav-item active" title="Dashboard"><span>🏠</span></div>
+        <div class="nav-item" title="Analytics"><span>📊</span></div>
+        <div class="nav-item" title="AI Health"><span>🧠</span></div>
+        <div class="nav-item" title="Guide" id="openGuideBtn"><span>📖</span></div>
+        <div class="nav-item" title="Settings" id="openIpModalBtn" style="margin-top: auto;"><span>⚙️</span></div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-wrapper">
+        <header class="top-bar">
+            <div class="greeting">
+                <h1 id="welcomeText">Welcome Back, Botanist</h1>
+                <p>Your indoor garden is currently flourishing.</p>
+            </div>
+
+            <div class="profile-pill" id="profileToggle">
+                <div class="user-info">
+                    <span class="user-name" style="font-weight: 600; font-size: 0.9rem;">Dr. Flora</span>
+                </div>
+                <img src="Untitled.png" alt="Avatar" class="avatar-small">
+            </div>
+        </header>
+
+        <section class="bento-grid">
+            <!-- Plant Spotlight Card -->
+            <div class="glass-card card-large plant-stage">
+                <div class="health-badge">HEALTH: 98%</div>
+                <div class="plant-container">
+                    <svg viewBox="0 0 300 400" class="animated-plant" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="150" cy="380" rx="60" ry="10" fill="rgba(0, 0, 0, 0.4)" filter="blur(4px)" />
+                        <path d="M110,380 L190,380 L200,320 L100,320 Z" fill="#ffffff" stroke="var(--electric-blue)" stroke-width="2" />
+                        <path d="M95,320 L205,320 C205,325 95,325 95,320" fill="#ffffff" stroke="var(--electric-blue)" stroke-width="2" />
+                        <path class="plant-stem" d="M150,320 C140,250 160,180 150,100" stroke="var(--electric-blue)" stroke-width="8" stroke-linecap="round" fill="none" />
+                        
+                        <g class="branch b-left-1">
+                            <path d="M148,270 Q100,280 80,240" stroke="var(--electric-blue)" stroke-width="5" stroke-linecap="round" fill="none" />
+                            <path class="leaf-organic l-sway-1" d="M80,240 C50,230 60,200 80,240 Z" fill="#3b82f6" />
+                            <path class="leaf-organic l-sway-2" d="M90,250 C70,230 60,260 90,250 Z" fill="#60a5fa" />
+                        </g>
+                        <g class="branch b-right-1">
+                            <path d="M152,210 Q200,200 230,160" stroke="var(--electric-blue)" stroke-width="5" stroke-linecap="round" fill="none" />
+                            <path class="leaf-organic l-sway-3" d="M230,160 C260,140 250,120 230,160 Z" fill="#2563eb" />
+                        </g>
+                        <g class="branch b-top">
+                            <path class="leaf-organic l-sway-1" d="M150,100 C120,60 150,40 150,100 Z" fill="#2563eb" />
+                            <path class="leaf-organic l-sway-2" d="M150,100 C150,50 180,60 150,100 Z" fill="#3b82f6" />
+                        </g>
+                    </svg>
+                </div>
+                <h3 style="margin-top: 1.5rem; color: var(--electric-blue);">Monstera Deliciosa</h3>
+            </div>
+
+            <!-- Sensor Data Card -->
+            <div class="glass-card metric-card" id="sensorDataCard" style="cursor: pointer;">
+                <div class="metric-header">
+                    <span>Sensor Data</span>
+                    <span>📡</span>
+                </div>
+                <div class="metric-value" style="font-size: 1.5rem; margin-top: 1.5rem;">Live Sync</div>
+                <div class="metric-trend trend-up">● System Online</div>
+            </div>
+
+            <!-- Scan Leaf Card -->
+            <div class="glass-card metric-card" style="cursor: pointer;">
+                <div class="metric-header">
+                    <span>Scan Leaf</span>
+                    <span>📸</span>
+                </div>
+                <div class="metric-value" style="font-size: 1.5rem; margin-top: 1.5rem;">AI Vision</div>
+                <div class="metric-trend">Detect diseases instantly</div>
+            </div>
+
+            <!-- Select Plants Card -->
+            <div class="glass-card card-medium" style="cursor: pointer;">
+                <div class="metric-header">Your Collection 🪴</div>
+                <div class="plant-tray">
+                    <div class="thumb-box" title="Succulent">
+                        <img src="thumb1.png" alt="Succulent">
+                    </div>
+                    <div class="thumb-box" title="Monstera">
+                        <img src="thumb2.png" alt="Monstera">
+                    </div>
+                    <div class="thumb-box" title="Fern">
+                        <img src="https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&q=80&w=60&h=60" alt="Fern">
+                    </div>
+                    <div class="add-btn" title="Add New Plant">+</div>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem;">Click to manage or add new varieties to your care list.</p>
+            </div>
+
+            <!-- AI Insight Card -->
+            <div class="glass-card" style="grid-column: span 1;">
+                <div class="metric-header">AI Diagnosis 🧠</div>
+                <p style="font-size: 0.85rem; margin-top: 1rem; color: var(--text-dim); line-height: 1.4;">"No anomalies detected. Next watering recommended in 2 days."</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals (Kept Functional) -->
+    <div class="modal hidden" id="guideModal">
+        <div class="modal-content glass-card">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h2 style="margin-bottom: 2rem;">🌿 Connection Guide</h2>
+            <p>1. Connect sensors to D2 and A0.</p>
+            <p>2. Set Wi-Fi credentials in firmware.</p>
+            <p>3. Point WebSocket to this dashboard IP.</p>
+        </div>
+    </div>
+
+    <!-- AI Scanner Modal -->
+    <div class="modal hidden" id="scannerModal">
+        <div class="modal-content glass-card" style="max-width: 500px; padding: 2rem;">
+            <span class="close-btn" id="closeScannerModal">&times;</span>
+            <h2 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px;">🔍 AI Leaf Scanner</h2>
+            
+            <div class="camera-viewport">
+                <video id="scannerVideo" autoplay muted playsinline></video>
+                <div class="scan-beam"></div>
+                <div class="scan-overlay"></div>
+            </div>
+
+            <div id="scannerInstructions" style="margin-top: 1.5rem; text-align: center; color: var(--text-dim);">
+                Position the leaf within the frame and hold still.
+            </div>
+
+            <div class="scan-controls" style="margin-top: 2rem; display: flex; gap: 1rem;">
+                <button class="primary-btn" id="captureBtn" style="flex: 1; background: var(--electric-blue);">Capture & Analyze</button>
+            </div>
+
+            <div id="analysisResult" class="hidden" style="margin-top: 2rem; padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 16px; border: 1px solid var(--glass-border);">
+                <h3 id="resultTitle" style="color: var(--electric-blue); margin-bottom: 0.5rem;">Analyzing...</h3>
+                <p id="resultText" style="font-size: 0.9rem; line-height: 1.4; color: var(--text-dim);"></p>
+                <div id="diseaseLabels" style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1rem;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IP Modal -->
+    <div class="modal hidden" id="ipModal">
+        <div class="modal-content glass-card">
+            <span class="close-btn" id="closeIpModal">&times;</span>
+            <h2 style="margin-bottom: 1.5rem;">📡 NodeMCU Connection</h2>
+            <input type="text" id="ipInput" placeholder="Enter IP Address" style="width: 100%; padding: 0.8rem; border-radius: 12px; border: 1px solid var(--glass-border); background: rgba(0,0,0,0.5); color: white; margin-bottom: 1rem;">
+            <button class="primary-btn" id="connectIpBtn" style="width: 100%; background: var(--electric-blue); color: white; padding: 0.8rem; border: none; border-radius: 12px; cursor: pointer;">Connect Handshake</button>
+            <div id="connectionLoader" class="hidden" style="margin-top: 1rem; text-align: center;">Syncing...</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
