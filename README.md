@@ -1,3 +1,6 @@
+<h1>THIS IS A DEMO AND THIS PROJECT IS JUST A STATIC OPEN SOURCE INTERFACE AND ANYONE CAN USE .</h1>
+
+
 # Plant-Health-System-Demo-Practice-for-dti
 Hey Guys This is a Demo Project in which i used basic frontend tools to make a dashboard for plant health monitoring system .
 🌱 Plant Health Monitoring System
